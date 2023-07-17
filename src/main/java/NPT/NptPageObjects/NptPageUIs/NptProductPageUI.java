@@ -46,4 +46,5 @@ public class NptProductPageUI {
     public static final String FIRST_VARIANT_NAME = "//p[text()='Tối đa 1 ảnh']/parent::div/preceding::label[1]/parent::div/parent::div/following-sibling::div[1]//span";
     public static final String FIRST_VARIANT_BARCODE_FIELD = "//p[text()='Tối đa 1 ảnh']/parent::div/preceding::label[1]/parent::div/parent::div/following-sibling::div[1]/following-sibling::div//label[contains(text(),'Mã vạch')]/following-sibling::div/input";
     public static final String FIRST_VARIANT_QUANTITY = "//p[text()='Tối đa 1 ảnh']/parent::div/preceding::label[1]/parent::div/parent::div/following-sibling::div[4]/div/input";
+    public static final String MANAGE_CATEGORY_BUTTON = "//div[contains(text(),'Danh mục')]";
 }

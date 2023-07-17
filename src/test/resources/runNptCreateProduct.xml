@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Npp">
+<suite name="Npt">
   <listeners>
     <listener class-name="commons.MethodListener" />
     <listener class-name="reportConfig.ReportNGListener" />
@@ -11,7 +11,7 @@
   <test name="Run On CHROME">
 	<parameter name="browser" value="chrome"/>
     <classes>
-      <class name="Mykiot.nptLogin"/>
+      <class name="Mykiot.nptCreateProduct"/>
 <!--      <class name="Mykiot.npp.AddOrder"/>-->
 <!--      <class name="Mykiot.npp.CreateCategory"/>-->
 <!--      <class name="Mykiot.npp.ProductListAndViewDetailProduct"/>-->
