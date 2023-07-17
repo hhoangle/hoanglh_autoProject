@@ -1,0 +1,1 @@
+{"uuid":"a8c14856-3c0d-4027-a582-51e7190a3f30","name":"Npt","children":["9e35a2c7-c730-4f2e-beb5-75e89109af38"],"befores":[{"name":"initBeforeSuite","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1689390461186,"stop":1689390461192}],"afters":[],"links":[],"start":1689390461174,"stop":1689390705793}

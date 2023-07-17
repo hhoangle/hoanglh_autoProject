@@ -144,4 +144,10 @@ public class NptProductPageObject extends BasePage {
     public void insertFirstVariantQuantity(String productQuantity) {
         sendKeyToElement(driver, NptProductPageUI.FIRST_VARIANT_QUANTITY,productQuantity);
     }
+
+    public NptCategoryPageObject clickToManageCategory() {
+        waitForElementVisible(driver, NptProductPageUI.MANAGE_CATEGORY_BUTTON);
+        clickToElement(driver, MANAGE_CATEGORY_BUTTON);
+        return  new NptCategoryPageObject(driver);
+    }
 }

@@ -28,6 +28,7 @@ public class NptProductDetailPageObject extends BasePage {
         return getElementText(driver, NptProductPageUI.IMPORT_PRICE_TEXT_IN_DETAIL_PAGE);
     }
     public String getBrandName() {
+        sleepInSecond(2);
         waitForElementVisible(driver, NptProductPageUI.BRAND_NAME_TEXT_IN_DETAIL_PAGE);
         return getElementText(driver, NptProductPageUI.BRAND_NAME_TEXT_IN_DETAIL_PAGE);
     }
