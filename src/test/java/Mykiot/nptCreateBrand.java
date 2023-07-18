@@ -56,4 +56,16 @@ public class nptCreateBrand extends BaseTest {
         assertEquals(nptBrandDetailPageObject.getBrandNameInDetailPage(),brandName);
         assertEquals(nptBrandDetailPageObject.getClassification(),classification);
     }
+    @Test
+    public void TC_03_Create_Brand_With_Product(){
+        goToHomePage();
+        nptProductPage = nptHomePage.clickToManageProduct();
+        nptProductPage.waitForLoadingIconInvisible(driver);
+        nptCategoryPageObject = nptProductPage.clickToManageCategory();
+        nptCategoryPageObject.clickCreateBrandButton();
+        nptCategoryPageObject.inputImg(imagePath);
+        nptCategoryPageObject.insertBrandName(brandName);
+        nptCategoryPageObject.clickAddProductToBrand();
+        nptCategoryPageObject.selectThreeFirstProducts();
+    }
 }
