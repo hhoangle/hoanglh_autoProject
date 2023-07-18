@@ -6,4 +6,6 @@ public class NptCategoryPageUI {
     public static final String SAVE_BRAND_BUTTON = " //button[contains(text(),'Lưu')][2]";
     public static final String WARNING_MESSAGE = "//p[text()='Vui lòng nhập đầy đủ thông tin']";
     public static final String CLOSE_WARNING_POPUP_BUTTON = "//button[contains(text(),'Đóng lại')]";
+    public static final String ADD_PRODUCT_TO_BRAND_BUTTON = "//button[contains(text(),'Thêm sản phẩm')]";
+    public static final String CONFIRM_SELECT_PRODUCT_BUTTON = "//button[contains(text(),'Xác nhận')]";
 }

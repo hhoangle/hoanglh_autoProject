@@ -1,17 +1,27 @@
 package NPT.NptPageObjects;
+
 import commons.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import NPT.NptPageObjects.NptPageUIs.NptCategoryPageUI;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static NPT.NptPageObjects.NptPageUIs.NptProductPageUI.PRODUCT_IMAGE;
 
-public class NptCategoryPageObject extends BasePage{
+public class NptCategoryPageObject extends BasePage {
     private WebDriver driver;
+    private int selectTime = 3;
+
     public NptCategoryPageObject(WebDriver driver) {
         this.driver = driver;
     }
 
     public void clickCreateBrandButton() {
+        waitForLoadingIconInvisible(driver);
         waitForElementVisible(driver, NptCategoryPageUI.CREATE_BRAND_BUTTON);
         clickToElement(driver, NptCategoryPageUI.CREATE_BRAND_BUTTON);
     }
@@ -38,5 +48,38 @@ public class NptCategoryPageObject extends BasePage{
 
     public void clickCloseWarningPopup() {
         clickToElement(driver, NptCategoryPageUI.CLOSE_WARNING_POPUP_BUTTON);
+    }
+
+    public void clickAddProductToBrand() {
+        clickToElement(driver, NptCategoryPageUI.ADD_PRODUCT_TO_BRAND_BUTTON);
+    }
+
+    public void selectThreeFirstProducts() {
+        List<String> arr1 = new ArrayList<>();
+        List<String> arr2 = new ArrayList<>();
+        List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@type='checkbox']"));
+        List<WebElement> selectedProductText = driver.findElements(By.xpath("//div[@class='ml-4']/p[@class='font-medium']"));
+        int countToClick = 0;
+        int countToGetText = 0;
+        for (WebElement checkbox : checkboxes) {
+            if (countToClick >= selectTime) {
+                break;
+            }
+            checkbox.click();
+            countToClick++;
+        }
+        for (WebElement productText : selectedProductText) {
+            if (countToGetText >= selectTime) {
+                break;
+            }
+            countToGetText++;
+            arr1.add(productText.getText());
+        }
+        clickToElement(driver, NptCategoryPageUI.CONFIRM_SELECT_PRODUCT_BUTTON);
+        List<WebElement> secondScreenItems = driver.findElements(By.xpath("//div[@class='ml-4']//p[@class='font-medium mb-2']"));
+        for (WebElement element : secondScreenItems) {
+            arr2.add(element.getText());
+        }
+        Assert.assertEquals(arr1,arr2);
     }
 }
