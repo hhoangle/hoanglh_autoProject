@@ -3,9 +3,10 @@ package Mykiot;
 import NPT.NptPageObjects.NptHomePageObject;
 import NPT.NptPageObjects.NptLoginPageObject;
 import NPT.NptPageObjects.NptProductPageObject;
-import NPT.NptPageObjects.NptPageUIs.NptProductDetailPageObject;
+import NPT.NptPageObjects.NptProductDetailPageObject;
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
@@ -176,8 +177,8 @@ public class nptCreateProduct extends BaseTest {
         assertEquals(nptProductDetailPageObject.getSellOnlineStatus(),"Đang bán");
     }
 
-//    @AfterClass
-//    public void afterClass() {
-//        closeBrowserAndDriver();
-//    }
+    @AfterClass
+    public void afterClass() {
+        closeBrowserAndDriver();
+    }
 }

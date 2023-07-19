@@ -2,7 +2,12 @@ package NPT.NptPageObjects;
 
 import NPT.NptPageObjects.NptPageUIs.NptBrandDetailPageUI;
 import commons.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NptBrandDetailPageObject extends BasePage {
     private WebDriver driver;
@@ -18,5 +23,13 @@ public class NptBrandDetailPageObject extends BasePage {
     public String getClassification() {
         waitForElementVisible(driver, NptBrandDetailPageUI.CLASSIFICATION_IN_DETAIL_PAGE);
         return getElementText(driver, NptBrandDetailPageUI.CLASSIFICATION_IN_DETAIL_PAGE);
+    }
+
+    public void confirmSelectedProductIsAdded() {
+        List<String> selectedProduct = new ArrayList<>();
+        List<WebElement> secondScreenItems = driver.findElements(By.xpath("//p[@class='font-medium text-black text-base']"));
+        for (WebElement element : secondScreenItems) {
+            selectedProduct.add(element.getText());
+        }
     }
 }
