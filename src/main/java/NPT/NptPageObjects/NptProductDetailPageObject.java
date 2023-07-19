@@ -1,5 +1,6 @@
-package NPT.NptPageObjects.NptPageUIs;
+package NPT.NptPageObjects;
 
+import NPT.NptPageObjects.NptPageUIs.NptProductPageUI;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 

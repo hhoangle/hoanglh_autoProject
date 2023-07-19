@@ -55,8 +55,8 @@ public class NptCategoryPageObject extends BasePage {
     }
 
     public void selectThreeFirstProducts() {
-        List<String> arr1 = new ArrayList<>();
-        List<String> arr2 = new ArrayList<>();
+        List<String> productList = new ArrayList<>();
+        List<String> selectedProduct = new ArrayList<>();
         List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@type='checkbox']"));
         List<WebElement> selectedProductText = driver.findElements(By.xpath("//div[@class='ml-4']/p[@class='font-medium']"));
         int countToClick = 0;
@@ -73,13 +73,28 @@ public class NptCategoryPageObject extends BasePage {
                 break;
             }
             countToGetText++;
-            arr1.add(productText.getText());
+            productList.add(productText.getText());
         }
         clickToElement(driver, NptCategoryPageUI.CONFIRM_SELECT_PRODUCT_BUTTON);
         List<WebElement> secondScreenItems = driver.findElements(By.xpath("//div[@class='ml-4']//p[@class='font-medium mb-2']"));
         for (WebElement element : secondScreenItems) {
-            arr2.add(element.getText());
+            selectedProduct.add(element.getText());
         }
-        Assert.assertEquals(arr1,arr2);
+        Assert.assertEquals(productList,selectedProduct);
+    }
+
+    public NptProductCategoryPageObject clickToProductCategory() {
+        clickToElement(driver, NptCategoryPageUI.BURGER_MENU);
+        return new NptProductCategoryPageObject(driver);
+    }
+
+    public void insertBrandDescription(String branDescription) {
+        sendKeyToElement(driver, NptCategoryPageUI.BRAND_DESCRIPTION_FIELD,branDescription);
+    }
+
+    public NptProductGroupPageObject clickToProductGroup() {
+        clickToElement(driver,NptCategoryPageUI.BURGER_MENU);
+        clickToElement(driver,NptCategoryPageUI.PRODUCT_GROUP_BUTTON);
+        return new NptProductGroupPageObject(driver);
     }
 }

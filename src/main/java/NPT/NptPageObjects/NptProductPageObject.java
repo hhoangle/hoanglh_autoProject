@@ -2,7 +2,6 @@ package NPT.NptPageObjects;
 
 import java.util.Random;
 
-import NPT.NptPageObjects.NptPageUIs.NptProductDetailPageObject;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 import NPT.NptPageObjects.NptPageUIs.NptProductPageUI;
