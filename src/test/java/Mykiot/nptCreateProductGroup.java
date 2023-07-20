@@ -1,5 +1,8 @@
 package Mykiot;
+
 import NPT.NptPageObjects.*;
+import NPT.NptPageObjects.NptPageUIs.NptProductGroupDetailUI;
+import NPT.NptPageObjects.NptPageUIs.NptProductGroupUI;
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 
@@ -9,6 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
+
 public class nptCreateProductGroup extends BaseTest {
     WebDriver driver;
     private String browserName;
@@ -19,7 +23,6 @@ public class nptCreateProductGroup extends BaseTest {
     private NptProductGroupPageObject nptProductGroupPageObject;
     private NptProductGroupDetailPageObject nptProductGroupDetailPageObject;
     private String productGroupName, productGroupDescription, productCategory, warningMessage;
-
     @BeforeClass
     public void beforeClass() {
         browserName = "chrome";
@@ -30,7 +33,6 @@ public class nptCreateProductGroup extends BaseTest {
         warningMessage = "Vui lòng nhập đầy đủ thông tin";
         productGroupDescription = "Phasellus feugiat erat a ex fringilla volutpat";
     }
-
     public void goToHomePage() {
         nptHomePage.openPageUrl(driver, NPT_LOGIN);
     }
@@ -45,5 +47,40 @@ public class nptCreateProductGroup extends BaseTest {
         nptProductGroupPageObject.clickSaveButton();
         assertEquals(nptProductGroupPageObject.getWarningMessage(), warningMessage);
         nptProductGroupPageObject.clickCloseWarningPopup();
+    }
+    @Test
+    public void TC_02_Create_Product_Group_Without_Select_Product() {
+        goToHomePage();
+        nptProductPage = nptHomePage.clickToManageProduct();
+        nptProductPage.waitForLoadingIconInvisible(driver);
+        nptCategoryPageObject = nptProductPage.clickToManageCategory();
+        nptProductGroupPageObject = nptCategoryPageObject.clickToProductGroup();
+        nptProductGroupPageObject.clickToCreateProductGroup();
+        nptProductGroupPageObject.insertProductGroupName(productGroupName);
+        nptProductGroupPageObject.selectProductCategory();
+        productCategory = nptProductGroupPageObject.getElementText(driver, NptProductGroupUI.SELECTED_PRODUCT_CATEGORY);
+        nptProductGroupPageObject.insertProductGroupDescription(productGroupDescription);
+        nptProductGroupDetailPageObject = nptProductGroupPageObject.clickSaveButton();
+        assertEquals(nptProductGroupDetailPageObject.getProductGroupNameText(),productGroupName);
+        assertEquals(nptProductGroupDetailPageObject.getProductCategoryNameText(),productCategory);
+    }
+    @Test
+    public void TC_03_Create_Product_Group_With_Product(){
+        goToHomePage();
+        nptProductPage = nptHomePage.clickToManageProduct();
+        nptProductPage.waitForLoadingIconInvisible(driver);
+        nptCategoryPageObject = nptProductPage.clickToManageCategory();
+        nptProductGroupPageObject = nptCategoryPageObject.clickToProductGroup();
+        nptProductGroupPageObject.clickToCreateProductGroup();
+        nptProductGroupPageObject.insertProductGroupName(productGroupName);
+        nptProductGroupPageObject.selectProductCategory();
+        productCategory = nptProductGroupPageObject.getElementText(driver, NptProductGroupUI.SELECTED_PRODUCT_CATEGORY);
+        nptProductGroupPageObject.insertProductGroupDescription(productGroupDescription);
+        nptProductGroupPageObject.clickAddProduct();
+        nptProductGroupPageObject.selectThreeFirstProduct();
+        nptProductGroupDetailPageObject = nptProductGroupPageObject.clickSaveButton();
+        assertEquals(nptProductGroupDetailPageObject.getProductGroupNameText(),productGroupName);
+        assertEquals(nptProductGroupDetailPageObject.getProductCategoryNameText(),productCategory);
+        nptProductGroupDetailPageObject.confirmSelectedProductIsAdded();
     }
 }
