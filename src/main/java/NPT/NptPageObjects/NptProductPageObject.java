@@ -55,7 +55,7 @@ public class NptProductPageObject extends BasePage {
     }
     public void clickOnProductGroupDropdown() {
         waitForElementVisible(driver, SELECT_PRODUCT_GROUP_LIST_PARENT);
-        clickToElement(driver,SELECT_PRODUCT_GROUP_LIST_PARENT );
+        clickToElement(driver,SELECT_PRODUCT_GROUP_LIST_PARENT);
     }
     public void clickStatusButton() {
         sleepInSecond(2);

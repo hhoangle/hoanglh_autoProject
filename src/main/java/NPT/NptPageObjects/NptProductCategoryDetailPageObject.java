@@ -40,4 +40,9 @@ public class NptProductCategoryDetailPageObject extends BasePage {
     public String getProductGroupInDetailPage() {
         return getElementText(driver, NptProductCategoryDetailPageUI.PRODUCT_GROUP_NAME_TEXT_IN_DETAIL_PAGE);
     }
+
+    public NptProductCategoryEditPageObject clickToEditProductCategory() {
+        clickToElement(driver, NptProductCategoryDetailPageUI.EDIT_PRODUCT_CATEGORY_BUTTON);
+        return new NptProductCategoryEditPageObject(driver);
+    }
 }
