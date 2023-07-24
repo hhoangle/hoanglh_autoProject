@@ -67,4 +67,5 @@ public class nptSalesOrder extends BaseTest {
     public void afterClass() {
         closeBrowserAndDriver();
     }
+    //comment
 }
