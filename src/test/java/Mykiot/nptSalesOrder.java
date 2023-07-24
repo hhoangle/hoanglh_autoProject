@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static commons.GlobalConstants.*;
+
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -60,5 +62,9 @@ public class nptSalesOrder extends BaseTest {
         nptDetailSaleOrderPageObject.clickToViewInvoice();
         String orderCodeInInvoice = nptDetailSaleOrderPageObject.getOrderCodeInInvoice();
         assertTrue(orderCodeInInvoice.contains(orderCode));
+    }
+    @AfterClass
+    public void afterClass() {
+        closeBrowserAndDriver();
     }
 }
