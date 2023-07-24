@@ -6,9 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static commons.GlobalConstants.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.containsString;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
