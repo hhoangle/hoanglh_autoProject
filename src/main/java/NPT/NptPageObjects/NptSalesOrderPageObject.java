@@ -13,4 +13,14 @@ public class NptSalesOrderPageObject extends BasePage {
         clickToElement(driver, NptSalesOrderUI.CREATE_SALES_ORDER_BUTTON);
         return new NptCreateSaleOrderPageObject(driver);
     }
+
+    public void clickToWaitToConfirmTab() {
+        waitForLoadingIconInvisible(driver);
+        clickToElement(driver, NptSalesOrderUI.WAIT_TO_CONFIRM_TAB);
+    }
+    public NptDetailSaleOrderPageObject clickToFirstOrder() {
+        waitForLoadingIconInvisible(driver);
+        clickToElement(driver, NptSalesOrderUI.FIRST_ORDER);
+        return new NptDetailSaleOrderPageObject(driver);
+    }
 }

@@ -2,7 +2,6 @@ package Mykiot;
 
 import NPT.NptPageObjects.*;
 import commons.BaseTest;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static commons.GlobalConstants.*;
@@ -22,7 +21,8 @@ public class nptSalesOrder extends BaseTest {
     private NptSalesOrderPageObject nptSaleOrderPageObject;
     private NptCreateSaleOrderPageObject nptCreateSaleOrderPageObject;
     private NptDetailSaleOrderPageObject nptDetailSaleOrderPageObject;
-    private String warningMessage, saleOrderStatus;
+    private String warningMessage, confirmedOrderStatus, waitToConfirmOrderStatus,
+            declinedOrderStatus, declineReason,selectDeclineReasonWarning;
 
     @BeforeClass
     public void beforeClass() {
@@ -31,22 +31,24 @@ public class nptSalesOrder extends BaseTest {
         loginPage = new NptLoginPageObject(driver);
         nptHomePage = loginPage.goToNptHomePage(driver);
         warningMessage = "Vui lòng chọn CHTH";
-        saleOrderStatus = "Đã Xác nhận";
+        confirmedOrderStatus = "Đã Xác nhận";
+        waitToConfirmOrderStatus = "Chờ phản hồi";
+        declinedOrderStatus = "NPT từ chối";
     }
-
     public void goToHomePage() {
         nptHomePage.openPageUrl(driver, NPT_LOGIN);
     }
-
     @Test
     public void TC_01_Create_Sale_Order_Without_Select_Store() {
         goToHomePage();
         nptSaleOrderPageObject = nptHomePage.clickToSaleOrder();
         nptCreateSaleOrderPageObject = nptSaleOrderPageObject.clickToCreateSalesOrder();
+        //SELECT 3 FIRST PRODUCTS FROM THE LIST
         nptCreateSaleOrderPageObject.selectThreeFirstProduct();
         nptCreateSaleOrderPageObject.clickToContinueButton();
+        //IF STORE IS NOT SELECTED, WARNING MESSAGE SHOULD BE DISPLAYED
         nptCreateSaleOrderPageObject.clickToConfirmButton();
-        assertEquals(nptCreateSaleOrderPageObject.getWarningMessage(),warningMessage);
+        assertEquals(nptCreateSaleOrderPageObject.getWarningMessage(), warningMessage);
     }
     @Test
     public void TC_02_Create_Sale_Order() {
@@ -57,15 +59,48 @@ public class nptSalesOrder extends BaseTest {
         nptCreateSaleOrderPageObject.clickToContinueButton();
         nptCreateSaleOrderPageObject.selectStore();
         nptDetailSaleOrderPageObject = nptCreateSaleOrderPageObject.clickToConfirmButton();
-        assertEquals(nptDetailSaleOrderPageObject.getSaleOrderStatus(),saleOrderStatus);
+        //AFTER SAVED ORDER, VERIFY ORDER STATUS & ORDER CODE
+        assertEquals(nptDetailSaleOrderPageObject.getSaleOrderStatus(), confirmedOrderStatus);
         String orderCode = nptDetailSaleOrderPageObject.getOrderCode();
         nptDetailSaleOrderPageObject.clickToViewInvoice();
+        //ORDER CODE IN INVOICE MUST BE SAME AS FROM ORDER DETAIL
         String orderCodeInInvoice = nptDetailSaleOrderPageObject.getOrderCodeInInvoice();
         assertTrue(orderCodeInInvoice.contains(orderCode));
+    }
+    @Test
+    public void TC_03_Confirm_Order() {
+        goToHomePage();
+        nptSaleOrderPageObject = nptHomePage.clickToSaleOrder();
+        nptSaleOrderPageObject.clickToWaitToConfirmTab();
+        nptDetailSaleOrderPageObject = nptSaleOrderPageObject.clickToFirstOrder();
+        assertEquals(nptDetailSaleOrderPageObject.getSaleOrderStatus(), waitToConfirmOrderStatus);
+        nptDetailSaleOrderPageObject.clickToConfirmOrder();
+        assertEquals(nptDetailSaleOrderPageObject.getSaleOrderStatus(), confirmedOrderStatus);
+    }
+    @Test
+    public void TC_04_Decline_Order() {
+        goToHomePage();
+        nptSaleOrderPageObject = nptHomePage.clickToSaleOrder();
+        nptSaleOrderPageObject.clickToWaitToConfirmTab();
+        nptDetailSaleOrderPageObject = nptSaleOrderPageObject.clickToFirstOrder();
+        assertEquals(nptDetailSaleOrderPageObject.getSaleOrderStatus(), waitToConfirmOrderStatus);
+        nptDetailSaleOrderPageObject.clickToDeclineOrderButton();
+        nptDetailSaleOrderPageObject.clickConfirmDecline();
+        //IF NOT SELECT DECLINE RESON, WARNING POPUP SHOULD BE DISPLAYED
+        selectDeclineReasonWarning = nptDetailSaleOrderPageObject.getDeclineWarningMessage();
+        assertEquals(selectDeclineReasonWarning,"Vui lòng chọn lý do từ chối");
+        nptDetailSaleOrderPageObject.clickCloseWarningPopup();
+        /*AFTER DECLINED, ORDER STATUS SHOULD BE CHANGED, ALSO DECLINED REASON SHOULD BE DISPLAYED IN
+        ORDER DETAIL */
+        nptDetailSaleOrderPageObject.clickToDeclineDropdownButton();
+        nptDetailSaleOrderPageObject.selectDeclineReason();
+        declineReason = nptDetailSaleOrderPageObject.getDeclineReason();
+        nptDetailSaleOrderPageObject.clickConfirmDecline();
+        assertEquals(nptDetailSaleOrderPageObject.getSaleOrderStatus(), declinedOrderStatus);
+        assertEquals(nptDetailSaleOrderPageObject.getDeclineReasonInDetailPage(), declineReason);
     }
     @AfterClass
     public void afterClass() {
         closeBrowserAndDriver();
     }
-    //comment
 }
