@@ -32,4 +32,29 @@ public class NptBrandDetailPageObject extends BasePage {
             selectedProduct.add(element.getText());
         }
     }
+
+    public void clickEditBrandInfo() {
+        clickToElement(driver,NptBrandDetailPageUI.EDIT_BRAND_INFO_BUTTON);
+    }
+
+    public String getBrandNameDescription() {
+        return getElementText(driver, NptBrandDetailPageUI.BRAND_DESCRIPTION_IN_DETAIL_PAGE);
+    }
+    public String getCurrentBrandNameInEditPage() {
+        return getElementText(driver, NptBrandDetailPageUI.CURRENT_BRAND_NAME_IN_EDIT_PAGE);
+    }
+
+    public void insertNewBrandName(String newBrandName) {
+        clearValueInElementByDeleteKey(driver, NptBrandDetailPageUI.BRAND_NAME_FIELD_IN_EDIT_PAGE);
+        sendKeyToElement(driver, NptBrandDetailPageUI.BRAND_NAME_FIELD_IN_EDIT_PAGE, newBrandName);
+    }
+
+    public void insertNewBrandDescription(String newBrandDescription) {
+        clearValueInElementByDeleteKey(driver, NptBrandDetailPageUI.BRAND_DESCRIPTION_IN_EDIT_PAGE);
+        sendKeyToElement(driver,NptBrandDetailPageUI.BRAND_DESCRIPTION_IN_EDIT_PAGE,newBrandDescription);
+    }
+
+    public void clickSaveButton() {
+        clickToElement(driver, NptBrandDetailPageUI.SAVE_BUTTON_IN_EDIT_PAGE);
+    }
 }

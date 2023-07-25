@@ -8,8 +8,6 @@ import NPT.NptPageObjects.NptPageUIs.NptLoginUI;
 import org.openqa.selenium.WebElement;
 
 import static commons.GlobalConstants.*;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
 
 public class NptLoginPageObject extends BasePage {
     private WebDriver driver;

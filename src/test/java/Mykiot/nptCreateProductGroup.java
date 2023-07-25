@@ -45,6 +45,7 @@ public class nptCreateProductGroup extends BaseTest {
         nptProductGroupPageObject = nptCategoryPageObject.clickToProductGroup();
         nptProductGroupPageObject.clickToCreateProductGroup();
         nptProductGroupPageObject.clickSaveButton();
+        //IF NOT INSERT PRODUCT GROUP NAME AND CLICK SAVE, THEN WARNING POPUP SHOULD BE DISPLAYED
         assertEquals(nptProductGroupPageObject.getWarningMessage(), warningMessage);
         nptProductGroupPageObject.clickCloseWarningPopup();
     }
@@ -57,10 +58,12 @@ public class nptCreateProductGroup extends BaseTest {
         nptProductGroupPageObject = nptCategoryPageObject.clickToProductGroup();
         nptProductGroupPageObject.clickToCreateProductGroup();
         nptProductGroupPageObject.insertProductGroupName(productGroupName);
+        //SELECT PRODUCT CATEGORY THEN IT SHOULD BE DISPLAYED IN THE LIST
         nptProductGroupPageObject.selectProductCategory();
         productCategory = nptProductGroupPageObject.getElementText(driver, NptProductGroupUI.SELECTED_PRODUCT_CATEGORY);
         nptProductGroupPageObject.insertProductGroupDescription(productGroupDescription);
         nptProductGroupDetailPageObject = nptProductGroupPageObject.clickSaveButton();
+        //AFER SAVED, COMPARE PRODUCT GROUP NAME & ADDED PRODUCT CATEGORY
         assertEquals(nptProductGroupDetailPageObject.getProductGroupNameText(),productGroupName);
         assertEquals(nptProductGroupDetailPageObject.getProductCategoryNameText(),productCategory);
     }
@@ -76,9 +79,11 @@ public class nptCreateProductGroup extends BaseTest {
         nptProductGroupPageObject.selectProductCategory();
         productCategory = nptProductGroupPageObject.getElementText(driver, NptProductGroupUI.SELECTED_PRODUCT_CATEGORY);
         nptProductGroupPageObject.insertProductGroupDescription(productGroupDescription);
+        //SELECT 3 FIRST PRODUCTS
         nptProductGroupPageObject.clickAddProduct();
         nptProductGroupPageObject.selectThreeFirstProduct();
         nptProductGroupDetailPageObject = nptProductGroupPageObject.clickSaveButton();
+        //AFTER SAVED, COMPARE PRODUCT GROUP NAME & ADDED PRODUCT CATEGORY, ADDED PRODUCTS
         assertEquals(nptProductGroupDetailPageObject.getProductGroupNameText(),productGroupName);
         assertEquals(nptProductGroupDetailPageObject.getProductCategoryNameText(),productCategory);
         nptProductGroupDetailPageObject.confirmSelectedProductIsAdded();

@@ -1,5 +1,6 @@
 package NPT.NptPageObjects;
 
+import NPT.NptPageObjects.NptPageUIs.NptHomePageUI;
 import NPT.NptPageObjects.NptPageUIs.NptProductPageUI;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
@@ -24,5 +25,10 @@ public class NptHomePageObject extends BasePage {
         waitForElementVisible(driver, NptProductPageUI.CREATE_PRODUCT_BUTTON);
         clickToElement(driver,NptProductPageUI.CREATE_PRODUCT_BUTTON);
 
+    }
+
+    public NptSalesOrderPageObject clickToSaleOrder() {
+        clickToElement(driver, NptHomePageUI.SALES_ORDER_BUTTON);
+        return new NptSalesOrderPageObject(driver);
     }
 }
