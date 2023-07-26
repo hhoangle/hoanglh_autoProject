@@ -75,6 +75,7 @@ public class nptSalesOrder extends BaseTest {
         nptDetailSaleOrderPageObject = nptSaleOrderPageObject.clickToFirstOrder();
         assertEquals(nptDetailSaleOrderPageObject.getSaleOrderStatus(), waitToConfirmOrderStatus);
         nptDetailSaleOrderPageObject.clickToConfirmOrder();
+        //AFTER CONFIRM ORDER, ORDER'S STATUS SHOULD BE CHANGED TO "CONFIRMED"
         assertEquals(nptDetailSaleOrderPageObject.getSaleOrderStatus(), confirmedOrderStatus);
     }
     @Test

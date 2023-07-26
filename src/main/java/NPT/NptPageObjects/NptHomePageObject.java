@@ -31,4 +31,9 @@ public class NptHomePageObject extends BasePage {
         clickToElement(driver, NptHomePageUI.SALES_ORDER_BUTTON);
         return new NptSalesOrderPageObject(driver);
     }
+
+    public NptPurchaseOrderPageObject clickToPurchaseOrder() {
+        clickToElement(driver, NptHomePageUI.PURCHASE_ORDER_BUTTON);
+        return new NptPurchaseOrderPageObject(driver);
+    }
 }
