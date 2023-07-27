@@ -615,4 +615,23 @@ public class BasePage {
 
     private long longTimeout = GlobalConstants.LONG_TIMEOUT;
     private long shortTimeout = GlobalConstants.SHORT_TIMEOUT;
+    public static void scrollDown(WebDriver driver) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    }
+    public boolean verifyAllItemsHaveStatus(WebDriver driver, String locator , String statusToCheck) {
+        boolean allItemsDenied = false;
+        // Find all items in the list
+        List<WebElement> items = driver.findElements(By.xpath(locator));
+        // Check the status for each item
+        for (WebElement item : items) {
+            String status = item.findElement(By.xpath(locator)).getText();
+            if (!status.equals(statusToCheck)) {
+                break;
+            } else {
+                allItemsDenied = true;
+            }
+        }
+        return allItemsDenied;
+    }
 }

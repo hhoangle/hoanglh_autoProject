@@ -14,4 +14,6 @@ public class NptPurchaseOrderUI {
     public static final String DENY_DELIVERY_BUTTON = "//div[@class='flex gap-2 bg-white p-4 box-shadow fixed left-0 bottom-0 w-full']/button[1]";
     public static final String CONFIRM_DENY_BUTTON = "//div[@class='bg-white p-4 grid grid-cols-2 gap-3 w-full']/button[2]";
     public static final String DECLINE_WARNING_POPUP = "//p[@class='pb-4 w-full text-center']";
+    public static final String DYNAMIC_SUBTAB = "//div[@class='tab flex gap-2 mb-5 overflow-x-auto']//p[text()='%s']";
+    public static final String STATUS_TAG = "//div[@class='flex justify-between items-center']//button";
 }
