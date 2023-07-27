@@ -1,4 +1,5 @@
 package NPT.NptPageObjects;
+import NPT.NptPageObjects.NptPageUIs.NptPurchaseOrderUI;
 import NPT.NptPageObjects.NptPageUIs.NptSalesOrderUI;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
@@ -22,5 +23,16 @@ public class NptSalesOrderPageObject extends BasePage {
         waitForLoadingIconInvisible(driver);
         clickToElement(driver, NptSalesOrderUI.FIRST_ORDER);
         return new NptDetailSaleOrderPageObject(driver);
+    }
+
+    public void clickToSubTab(String orderStatus) {
+        waitForLoadingIconInvisible(driver);
+        waitForAllElementVisible(driver, NptPurchaseOrderUI.DYNAMIC_SUBTAB, orderStatus);
+        clickToElement(driver, NptPurchaseOrderUI.DYNAMIC_SUBTAB, orderStatus);
+    }
+
+    public boolean isPurchaseOderHaveCorrectStatus(String statusToCheck) {
+        waitForLoadingIconInvisible(driver);
+        return verifyAllItemsHaveStatus(driver, NptPurchaseOrderUI.STATUS_TAG, statusToCheck);
     }
 }

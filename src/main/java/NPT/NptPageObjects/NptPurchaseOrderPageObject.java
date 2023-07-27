@@ -69,4 +69,15 @@ public class NptPurchaseOrderPageObject extends BasePage {
     public String getDenyReasonInDetailPage() {
         return getElementText(driver, NptSalesOrderUI.DECLINE_REASON_IN_DETAIL_PAGE);
     }
+
+    public void clickToSubTab(String orderStatus) {
+        waitForLoadingIconInvisible(driver);
+        waitForAllElementVisible(driver, NptPurchaseOrderUI.DYNAMIC_SUBTAB, orderStatus);
+        clickToElement(driver, NptPurchaseOrderUI.DYNAMIC_SUBTAB, orderStatus);
+    }
+
+    public boolean isPurchaseOderHaveCorrectStatus(String statusToCheck) {
+        waitForLoadingIconInvisible(driver);
+        return verifyAllItemsHaveStatus(driver, NptPurchaseOrderUI.STATUS_TAG, statusToCheck);
+    }
 }

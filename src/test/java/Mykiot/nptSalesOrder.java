@@ -21,8 +21,9 @@ public class nptSalesOrder extends BaseTest {
     private NptSalesOrderPageObject nptSaleOrderPageObject;
     private NptCreateSaleOrderPageObject nptCreateSaleOrderPageObject;
     private NptDetailSaleOrderPageObject nptDetailSaleOrderPageObject;
-    private String warningMessage, confirmedOrderStatus, waitToConfirmOrderStatus,
-            declinedOrderStatus, declineReason,selectDeclineReasonWarning;
+    private String warningMessage, confirmedOrderStatus, waitToConfirmOrderStatus,completedOrderStatus,
+
+            declinedOrderStatus, declineReason,selectDeclineReasonWarning, storeDeclineOrderStatus;
 
     @BeforeClass
     public void beforeClass() {
@@ -31,9 +32,11 @@ public class nptSalesOrder extends BaseTest {
         loginPage = new NptLoginPageObject(driver);
         nptHomePage = loginPage.goToNptHomePage(driver);
         warningMessage = "Vui lòng chọn CHTH";
-        confirmedOrderStatus = "Đã Xác nhận";
+        confirmedOrderStatus = "Đã xác nhận";
         waitToConfirmOrderStatus = "Chờ phản hồi";
         declinedOrderStatus = "NPT từ chối";
+        completedOrderStatus = "Hoàn thành";
+        storeDeclineOrderStatus = "CHTH từ chối";
     }
     public void goToHomePage() {
         nptHomePage.openPageUrl(driver, NPT_LOGIN);
@@ -99,6 +102,27 @@ public class nptSalesOrder extends BaseTest {
         nptDetailSaleOrderPageObject.clickConfirmDecline();
         assertEquals(nptDetailSaleOrderPageObject.getSaleOrderStatus(), declinedOrderStatus);
         assertEquals(nptDetailSaleOrderPageObject.getDeclineReasonInDetailPage(), declineReason);
+    }
+    @Test
+    public void TC_05_Verify_Sale_Order_Status(){
+        goToHomePage();
+        nptSaleOrderPageObject = nptHomePage.clickToSaleOrder();
+        //GO TO EACH SUB-TAB, ORDER FROM THE LIST MUST HAVE STATUS SAME AS THEIR SUB-TAB
+        //WAIT TO CONFIRM
+        nptSaleOrderPageObject.clickToSubTab(waitToConfirmOrderStatus);
+        assertTrue(nptSaleOrderPageObject.isPurchaseOderHaveCorrectStatus(waitToConfirmOrderStatus));
+        //CONFIRMED
+        nptSaleOrderPageObject.clickToSubTab(confirmedOrderStatus);
+        assertTrue(nptSaleOrderPageObject.isPurchaseOderHaveCorrectStatus(confirmedOrderStatus));
+        //COMPLETED
+        nptSaleOrderPageObject.clickToSubTab(completedOrderStatus);
+        assertTrue(nptSaleOrderPageObject.isPurchaseOderHaveCorrectStatus(completedOrderStatus));
+        //DECLINED
+        nptSaleOrderPageObject.clickToSubTab(declinedOrderStatus);
+        assertTrue(nptSaleOrderPageObject.isPurchaseOderHaveCorrectStatus(declinedOrderStatus));
+        //STORE DECLINED
+//        nptSaleOrderPageObject.clickToSubTab(storeDeclineOrderStatus);
+//        assertTrue(nptSaleOrderPageObject.isPurchaseOderHaveCorrectStatus(storeDeclineOrderStatus));
     }
     @AfterClass
     public void afterClass() {
