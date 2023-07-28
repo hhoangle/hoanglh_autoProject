@@ -23,7 +23,8 @@ public class nptSalesOrder extends BaseTest {
     private NptDetailSaleOrderPageObject nptDetailSaleOrderPageObject;
     private String warningMessage, confirmedOrderStatus, waitToConfirmOrderStatus,completedOrderStatus,
 
-            declinedOrderStatus, declineReason,selectDeclineReasonWarning, storeDeclineOrderStatus;
+            declinedOrderStatus, declineReason,selectDeclineReasonWarning, storeDeclineOrderStatus,orderFromNpt,
+            orderFromAdmin,orderTypeNpt,orderTypeAdmin;
 
     @BeforeClass
     public void beforeClass() {
@@ -37,6 +38,10 @@ public class nptSalesOrder extends BaseTest {
         declinedOrderStatus = "NPT từ chối";
         completedOrderStatus = "Hoàn thành";
         storeDeclineOrderStatus = "CHTH từ chối";
+        orderFromNpt = "Đơn của NPT";
+        orderFromAdmin = "Đơn từ Mykiot";
+        orderTypeNpt = "Trực tiếp";
+        orderTypeAdmin = "Điều phối";
     }
     public void goToHomePage() {
         nptHomePage.openPageUrl(driver, NPT_LOGIN);
@@ -123,6 +128,18 @@ public class nptSalesOrder extends BaseTest {
         //STORE DECLINED
 //        nptSaleOrderPageObject.clickToSubTab(storeDeclineOrderStatus);
 //        assertTrue(nptSaleOrderPageObject.isPurchaseOderHaveCorrectStatus(storeDeclineOrderStatus));
+    }
+    @Test
+    public void TC_06_Verify_Order_From(){
+        goToHomePage();
+        nptSaleOrderPageObject = nptHomePage.clickToSaleOrder();
+        //GO TO EACH SUB-TAB, ORDER FROM THE LIST MUST HAVE SAME TYPE AS THEIR SUB-TAB
+        //VERIFY ORDER FROM NPT MUST HAVE ORDER TYPE IS: "DIRECT"
+        nptSaleOrderPageObject.clickToOrderTypeTab(orderFromNpt);
+        assertTrue(nptSaleOrderPageObject.isPurchaseOderHaveCorrectType(orderTypeNpt));
+        //VERIFY ORDER FROM NPT MUST HAVE ORDER TYPE IS: "RE-DIRECT"
+        nptSaleOrderPageObject.clickToOrderTypeTab(orderFromAdmin);
+        assertTrue(nptSaleOrderPageObject.isPurchaseOderHaveCorrectType(orderTypeAdmin));
     }
     @AfterClass
     public void afterClass() {

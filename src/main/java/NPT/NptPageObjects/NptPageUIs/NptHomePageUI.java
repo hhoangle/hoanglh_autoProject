@@ -5,4 +5,5 @@ public class NptHomePageUI {
     public static final String ERROR_TEXT = "//p[text()='Sai số điện thoại hoặc mật khẩu']";
     public static final String SALES_ORDER_BUTTON = "//p[contains(text(),'Đơn bán hàng')]";
     public static final String PURCHASE_ORDER_BUTTON = "//p[text()='Đơn đặt hàng']";
+    public static final String CREATE_EMPLOYEE_BUTTON = "//p[text()='Quản lý nhân viên']";
 }

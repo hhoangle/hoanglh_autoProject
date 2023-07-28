@@ -16,4 +16,6 @@ public class NptPurchaseOrderUI {
     public static final String DECLINE_WARNING_POPUP = "//p[@class='pb-4 w-full text-center']";
     public static final String DYNAMIC_SUBTAB = "//div[@class='tab flex gap-2 mb-5 overflow-x-auto']//p[text()='%s']";
     public static final String STATUS_TAG = "//div[@class='flex justify-between items-center']//button";
+    public static final String DYNAMIC_ORDER_FROM_TAB = "//div[@class='bg-white p-4 flex items-center gap-4']/p[text()='%s']";
+    public static final String ORDER_TYPE_TAG = "//p[text()='Loại đơn hàng']/following-sibling::p";
 }

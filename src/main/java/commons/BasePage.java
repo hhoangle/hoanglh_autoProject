@@ -634,4 +634,19 @@ public class BasePage {
         }
         return allItemsDenied;
     }
+    public boolean verifyAllItemsHaveCorrectType(WebDriver driver, String locator , String statusToCheck) {
+        boolean allItemsDenied = false;
+        // Find all items in the list
+        List<WebElement> items = driver.findElements(By.xpath(locator));
+        // Check the status for each item
+        for (WebElement item : items) {
+            String status = item.findElement(By.xpath(locator)).getText();
+            if (!status.equals(statusToCheck)) {
+                break;
+            } else {
+                allItemsDenied = true;
+            }
+        }
+        return allItemsDenied;
+    }
 }

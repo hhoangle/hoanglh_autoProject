@@ -30,9 +30,18 @@ public class NptSalesOrderPageObject extends BasePage {
         waitForAllElementVisible(driver, NptPurchaseOrderUI.DYNAMIC_SUBTAB, orderStatus);
         clickToElement(driver, NptPurchaseOrderUI.DYNAMIC_SUBTAB, orderStatus);
     }
+    public void clickToOrderTypeTab(String orderFrom) {
+        waitForLoadingIconInvisible(driver);
+        waitForAllElementVisible(driver, NptPurchaseOrderUI.DYNAMIC_ORDER_FROM_TAB, orderFrom);
+        clickToElement(driver, NptPurchaseOrderUI.DYNAMIC_ORDER_FROM_TAB, orderFrom);
+    }
 
     public boolean isPurchaseOderHaveCorrectStatus(String statusToCheck) {
         waitForLoadingIconInvisible(driver);
         return verifyAllItemsHaveStatus(driver, NptPurchaseOrderUI.STATUS_TAG, statusToCheck);
+    }
+    public boolean isPurchaseOderHaveCorrectType(String orderType) {
+        waitForLoadingIconInvisible(driver);
+        return verifyAllItemsHaveCorrectType(driver, NptPurchaseOrderUI.ORDER_TYPE_TAG, orderType);
     }
 }
