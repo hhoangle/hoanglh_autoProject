@@ -5,6 +5,8 @@ import NPT.NptPageObjects.NptPageUIs.NptProductPageUI;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 
+import java.util.Random;
+
 import static commons.GlobalConstants.SHORT_TIMEOUT;
 
 public class NptHomePageObject extends BasePage {
@@ -40,5 +42,15 @@ public class NptHomePageObject extends BasePage {
     public NptCreateEmployeePageObject clickToManageEmployee() {
         clickToElement(driver, NptHomePageUI.CREATE_EMPLOYEE_BUTTON);
         return new NptCreateEmployeePageObject(driver);
+    }
+
+    public String generateRandomPhoneNumber() {
+        StringBuilder phoneNumber = new StringBuilder("09");
+        Random random = new Random();
+        for (int i = 0; i < 8; i++) {
+            int digit = random.nextInt(10);
+            phoneNumber.append(digit);
+        }
+        return phoneNumber.toString();
     }
 }
