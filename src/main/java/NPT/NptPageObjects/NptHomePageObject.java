@@ -40,7 +40,7 @@ public class NptHomePageObject extends BasePage {
     }
 
     public NptCreateEmployeePageObject clickToManageEmployee() {
-        clickToElement(driver, NptHomePageUI.CREATE_EMPLOYEE_BUTTON);
+        clickToElement(driver, NptHomePageUI.MANAGE_EMPLOYEE_BUTTON);
         return new NptCreateEmployeePageObject(driver);
     }
 
@@ -52,5 +52,11 @@ public class NptHomePageObject extends BasePage {
             phoneNumber.append(digit);
         }
         return phoneNumber.toString();
+    }
+
+    public NptCreateGroceryStorePageObject clickToManageGroceryStore() {
+        waitForLoadingIconInvisible(driver);
+        clickToElement(driver, NptHomePageUI.MANAGE_GROCERY_STORE_BUTTON);
+        return new NptCreateGroceryStorePageObject(driver);
     }
 }
