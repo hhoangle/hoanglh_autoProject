@@ -1,11 +1,8 @@
 package AdminPageObjects;
 
-import AdminPageObjects.*;
 import AdminPageUIs.*;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-
-import static commons.GlobalConstants.SHORT_TIMEOUT;
 
 public class AdminHomePageObject extends BasePage {
     private WebDriver driver;
@@ -15,8 +12,14 @@ public class AdminHomePageObject extends BasePage {
     }
 
     public AdminProductPageObject clickToManageProduct() {
-        waitForElementVisible(driver, AdminProductPageUI.MANAGE_PRODUCT);
-        clickToElement(driver, AdminProductPageUI.MANAGE_PRODUCT);
+        waitForElementVisible(driver, AdminProductUI.MANAGE_PRODUCT);
+        clickToElement(driver, AdminProductUI.MANAGE_PRODUCT);
         return new AdminProductPageObject(driver);
+    }
+
+    public AdminOrderPageObject clickToCreateOrder() {
+        waitForElementVisible(driver, AdminOrderUI.CREATE_ORDER_BUTTON);
+        clickToElement(driver, AdminOrderUI.CREATE_ORDER_BUTTON);
+        return new AdminOrderPageObject(driver);
     }
 }

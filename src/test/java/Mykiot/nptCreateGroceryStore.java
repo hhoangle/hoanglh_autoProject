@@ -56,7 +56,7 @@ public class nptCreateGroceryStore extends BaseTest {
         nptHomePage.openPageUrl(driver, NPT_LOGIN);
     }
     @Test
-    public void TC_01(){
+    public void TC_01_Create_Store(){
         goToHomePage();
         nptCreateGroceryStorePageObject = nptHomePage.clickToManageGroceryStore();
         nptCreateGroceryStorePageObject.clickToCreateGroceryStore();

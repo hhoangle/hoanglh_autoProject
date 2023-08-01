@@ -4,6 +4,7 @@ import AdminPageObjects.AdminHomePageObject;
 import AdminPageObjects.AdminLoginPageObject;
 import AdminPageObjects.AdminProductPageObject;
 import AdminPageObjects.AdminProductDetailPageObject;
+import AdminPageUIs.*;
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
@@ -63,7 +64,6 @@ public class adminCreateProduct extends BaseTest {
     }
     public void goToHomePage() {
         adminHomePage.openPageUrl(driver, ADMIN_LOGIN);
-
     }
     @Test
     public void TC_01_Create_Product_Without_Input() {
@@ -126,12 +126,11 @@ public class adminCreateProduct extends BaseTest {
         adminProductPage.insertProductDescription(productDescription);
         adminProductPage.inputImg(imagePath);
         //CLICK & SELECT BRAND
-        adminProductPage.scrollToBottomPage(driver);
+        adminProductPage.scrollToElement(driver, AdminProductUI.PRODUCT_IMAGE_TITLE);
         adminProductPage.clickBrandNameDropDown();
         adminProductPage.selectBrandName();
         brandName = adminProductPage.getBrandNameText();
         //CLICK & SELECT PRODUCT CATEGORY
-        adminProductPage.scrollToBottomPage(driver);
         adminProductPage.clickProductCategoryDropDown();
         adminProductPage.selectProductCategoryName();
         productCategoryName = adminProductPage.getProductCategoryNameText();
@@ -181,12 +180,11 @@ public class adminCreateProduct extends BaseTest {
         adminProductPage.insertVariantQuantity(variantQuantity);
         adminProductPage.insertQuantity(quantityProduct);
         //CLICK & SELECT BRAND
-        adminProductPage.scrollToBottomPage(driver);
+        adminProductPage.scrollToElement(driver, AdminProductUI.PRODUCT_IMAGE_TITLE);
         adminProductPage.clickBrandNameDropDown();
         adminProductPage.selectBrandName();
         brandName = adminProductPage.getBrandNameText();
         //CLICK & SELECT PRODUCT CATEGORY
-        adminProductPage.scrollToBottomPage(driver);
         adminProductPage.clickProductCategoryDropDown();
         adminProductPage.selectProductCategoryName();
         productCategoryName = adminProductPage.getProductCategoryNameText();
