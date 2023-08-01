@@ -54,4 +54,8 @@ public class adminCreateOrder extends BaseTest {
         adminOrderPageObject.clickToAddProduct();
         Assert.assertFalse(adminOrderPageObject.isSaveButtonEnabled());
     }
+    @AfterClass
+    public void afterClass() {
+        closeBrowserAndDriver();
+    }
 }
