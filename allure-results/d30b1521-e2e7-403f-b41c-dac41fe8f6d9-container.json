@@ -1,0 +1,1 @@
+{"uuid":"d30b1521-e2e7-403f-b41c-dac41fe8f6d9","name":"Mykiot.nptCreateGroceryStore","children":["ccff6590-ba08-4e8e-9f09-6ae856c8f660"],"befores":[{"name":"beforeClass","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1690798091978,"stop":1690798119040}],"afters":[],"links":[],"start":1690798091975,"stop":1690798192822}
