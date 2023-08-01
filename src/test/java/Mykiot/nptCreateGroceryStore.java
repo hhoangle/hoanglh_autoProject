@@ -7,6 +7,7 @@ import NPT.NptPageObjects.NptCreateGroceryStorePageObject;
 import NPT.NptPageObjects.NptPageUIs.NptDetailGroceryPageUI;
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
@@ -79,5 +80,9 @@ public class nptCreateGroceryStore extends BaseTest {
         assertEquals(nptDetailGroceryStorePageObject.getInforInDetailPage(driver,NptDetailGroceryPageUI.STORE_NAME_IN_DETAIL_PAGE,emailTitle),storeEmail);
         assertEquals(nptDetailGroceryStorePageObject.getInforInDetailPage(driver,NptDetailGroceryPageUI.STORE_NAME_IN_DETAIL_PAGE,representativeNameTitle),representativeName);
         assertEquals(nptDetailGroceryStorePageObject.getInforInDetailPage(driver,NptDetailGroceryPageUI.STORE_NAME_IN_DETAIL_PAGE,contactNameTitle),contactName);
+    }
+    @AfterClass
+    public void afterClass() {
+        closeBrowserAndDriver();
     }
 }

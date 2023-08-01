@@ -4,6 +4,7 @@ import NPT.NptPageObjects.*;
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static commons.GlobalConstants.*;
@@ -113,5 +114,9 @@ public class nptCreateEmployee extends BaseTest {
         nptCreateEmployeePageObject.selectAddress();
         nptCreateEmployeePageObject.clickSaveButton();
         assertEquals(nptCreateEmployeePageObject.getErrorMessage(passWordErrorMessage),passWordErrorMessage);
+    }
+    @AfterClass
+    public void afterClass() {
+        closeBrowserAndDriver();
     }
 }

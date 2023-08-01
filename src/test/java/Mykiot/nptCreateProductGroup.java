@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 import static commons.GlobalConstants.*;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -87,5 +88,9 @@ public class nptCreateProductGroup extends BaseTest {
         assertEquals(nptProductGroupDetailPageObject.getProductGroupNameText(),productGroupName);
         assertEquals(nptProductGroupDetailPageObject.getProductCategoryNameText(),productCategory);
         nptProductGroupDetailPageObject.confirmSelectedProductIsAdded();
+    }
+    @AfterClass
+    public void afterClass() {
+        closeBrowserAndDriver();
     }
 }
