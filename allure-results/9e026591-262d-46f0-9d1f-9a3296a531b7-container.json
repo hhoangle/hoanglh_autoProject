@@ -1,0 +1,1 @@
+{"uuid":"9e026591-262d-46f0-9d1f-9a3296a531b7","name":"Mykiot.nptCreateEmployee","children":["09473496-7970-418d-8820-89751544a6f7"],"befores":[{"name":"beforeClass","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1690614357110,"stop":1690614383530}],"afters":[],"links":[],"start":1690614357102,"stop":1690614406262}
